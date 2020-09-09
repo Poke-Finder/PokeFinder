@@ -54,7 +54,7 @@ QVariant PokeSpotModel::data(const QModelIndex &index, int role) const
                 return tr("Uncommon");
             case 2:
                 return tr("Rare");
-            }
+            }// fallthrough
         case 4:
             return Translator::getNature(state.getNature());
         case 5:

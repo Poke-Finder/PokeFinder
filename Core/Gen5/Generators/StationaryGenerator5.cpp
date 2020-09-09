@@ -209,7 +209,7 @@ QVector<StationaryState> StationaryGenerator5::generateStationary(u64 seed) cons
         StationaryState state(initialAdvances + cnt);
         BWRNG go(rng.getSeed());
 
-        u32 pid;
+        u32 pid=0;
         if (lead == Lead::Synchronize)
         {
             bool synch = (go.nextUInt() >> 1) == 1;

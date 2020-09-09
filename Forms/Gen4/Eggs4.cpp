@@ -209,7 +209,7 @@ void Eggs4::search()
 {
     searcherModel->clearModel();
 
-    Method methodModel;
+    Method methodModel=Method::Gen4Normal;
     switch (ui->comboBoxSearcherMethod->currentIndex())
     {
     case 0:

@@ -80,7 +80,7 @@ bool ShadowLock::firstShadowNormal(u32 seed, u16 tsv)
         return false;
     }
 
-    u32 pid;
+    u32 pid=0;
     for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
     {
         backward.advance(5);
@@ -133,7 +133,7 @@ bool ShadowLock::firstShadowSet(u32 seed, u16 tsv)
         return false;
     }
 
-    u32 pid;
+    u32 pid=0;
     for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
     {
         backward.advance(5);
@@ -197,7 +197,7 @@ bool ShadowLock::firstShadowUnset(u32 seed, u16 tsv)
         return false;
     }
 
-    u32 pid;
+    u32 pid=0;
     for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
     {
         backward.advance(5);
@@ -285,7 +285,7 @@ bool ShadowLock::coloShadow(u32 seed)
         return false;
     }
 
-    u32 pid;
+    u32 pid=0;
     for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
     {
         backward.advance(5);
@@ -338,7 +338,7 @@ bool ShadowLock::ereader(u32 seed, u32 readerPID)
     XDRNGR backward(seed);
     backward.advance(1);
 
-    u32 pid;
+    u32 pid=0;
     for (backwardLock++; backwardLock != locks.cend(); backwardLock++)
     {
         if (backwardLock != locks.begin() + 1)

@@ -156,7 +156,7 @@ void Stationary5::setupModels()
     setting.endGroup();
 }
 
-void Stationary5::updateProgress(const QVector<StationaryState> &states, int progress)
+void Stationary5::updateProgress(const QVector<StationaryState> &/*states*/, int progress)
 {
     // searcherModel->addItems(states);
     ui->progressBar->setValue(progress);
@@ -310,7 +310,7 @@ void Stationary5::generatorLead()
     }
 }
 
-void Stationary5::tableViewGeneratorContextMenu(const QPoint &pos)
+void Stationary5::tableViewGeneratorContextMenu(const QPoint &/*pos*/)
 {
     /*if (generatorModel->rowCount() > 0)
     {
@@ -318,7 +318,7 @@ void Stationary5::tableViewGeneratorContextMenu(const QPoint &pos)
     }*/
 }
 
-void Stationary5::tableViewSearcherContextMenu(const QPoint &pos)
+void Stationary5::tableViewSearcherContextMenu(const QPoint &/*pos*/)
 {
     /*if (searcherModel->rowCount() == 0)
     {

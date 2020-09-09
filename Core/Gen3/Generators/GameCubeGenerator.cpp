@@ -118,7 +118,7 @@ QVector<GameCubeState> GameCubeGenerator::generateXDShadow(u32 seed) const
             // We will assume it is already set and skip the PID process
             if (!lock->getFree())
             {
-                u32 pid;
+                u32 pid=0;
                 do
                 {
                     u16 high = go.nextUShort();
@@ -196,8 +196,8 @@ QVector<GameCubeState> GameCubeGenerator::generateColoShadow(u32 seed) const
         // Trainer TID/SID
         u16 trainerTSV = go.nextUShort() ^ go.nextUShort();
 
-        u8 ability;
-        u32 pid;
+        u8 ability=0;
+        u32 pid=0;
         for (auto lock = locks.rbegin(); lock != locks.rend(); lock++)
         {
             // Temporary PID: 2 advances
