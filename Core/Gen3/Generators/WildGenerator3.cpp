@@ -139,7 +139,10 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            go.next();
+            if (!isSafariZoneEncounterArea())
+            {
+                go.next();
+            }
             state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
             if (!filter.compareEncounterSlot(state))
             {
@@ -147,6 +150,10 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
+            if (isSafariZoneEncounterArea())
+            {
+                go.next();
+            }
             break;
         default:
             break;
@@ -231,5 +238,5 @@ void WildGenerator3::setEncounterArea(const EncounterArea3 &encounterArea)
 
 bool WildGenerator3::isSafariZoneEncounterArea() const
 {
-    return encounterArea.getLocation() == 51 || encounterArea.getLocation() == 53;
+    return encounterArea.getLocation() == 49 || encounterArea.getLocation() == 50 || encounterArea.getLocation() == 51 || encounterArea.getLocation() == 52 || encounterArea.getLocation() == 53;
 }
