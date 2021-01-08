@@ -86,7 +86,7 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
         switch (encounter)
         {
         case Encounter::RockSmash:
-            if (!isSafariZoneEncounterArea())
+            if (!encounterArea.isSafariZone())
             {
                 if (!rock)
                 {
@@ -109,7 +109,7 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
-            if (isSafariZoneEncounterArea())
+            if (encounterArea.isSafariZone())
             {
                 go.advance(1);
             }
@@ -139,7 +139,7 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            if (!isSafariZoneEncounterArea())
+            if (!encounterArea.isSafariZone())
             {
                 go.next();
             }
@@ -150,7 +150,7 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
-            if (isSafariZoneEncounterArea())
+            if (encounterArea.isSafariZone())
             {
                 go.next();
             }
@@ -229,14 +229,4 @@ QVector<WildState> WildGenerator3::generate(u32 seed) const
     }
 
     return states;
-}
-
-void WildGenerator3::setEncounterArea(const EncounterArea3 &encounterArea)
-{
-    this->encounterArea = encounterArea;
-}
-
-bool WildGenerator3::isSafariZoneEncounterArea() const
-{
-    return encounterArea.getLocation() == 49 || encounterArea.getLocation() == 50 || encounterArea.getLocation() == 51 || encounterArea.getLocation() == 52 || encounterArea.getLocation() == 53;
 }
