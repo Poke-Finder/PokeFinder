@@ -87,11 +87,18 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         switch (encounter)
         {
         case Encounter::RockSmash:
-            if (!rock)
+            if (!encounterArea.isSafariZone())
+            {
+                if (!rock)
+                {
+                    go.next();
+                }
+            }
+            else
             {
                 go.next();
             }
-            if (((go.nextUShort()) % 2880) >= rate)
+            if ((go.nextUShort() % 2880) >= rate)
             {
                 continue;
             }
@@ -103,6 +110,10 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
+            if (encounterArea.isSafariZone())
+            {
+                go.advance(1);
+            }
             break;
         case Encounter::SafariZone:
             state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
@@ -129,7 +140,10 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
         case Encounter::OldRod:
         case Encounter::GoodRod:
         case Encounter::SuperRod:
-            go.next();
+            if (!encounterArea.isSafariZone())
+            {
+                go.next();
+            }
             state.setEncounterSlot(EncounterSlot::hSlot(go.nextUShort(), encounter));
             if (!filter.compareEncounterSlot(state))
             {
@@ -137,6 +151,10 @@ std::vector<WildState> WildGenerator3::generate(u32 seed, const EncounterArea3 &
             }
 
             state.setLevel(encounterArea.calcLevel(state.getEncounterSlot(), go.nextUShort()));
+            if (encounterArea.isSafariZone())
+            {
+                go.next();
+            }
             break;
         default:
             break;
